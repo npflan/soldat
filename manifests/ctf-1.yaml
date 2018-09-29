@@ -1,0 +1,63 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: soldat-ctf-1
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: soldat-ctf-1
+    spec:
+      containers:
+      - name: soldat-ctf-1
+        image: npflan/soldat:0.1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 23073
+          name: game
+        - containerPort: 23083
+          name: files
+        readinessProbe: &default_probe
+          tcpSocket:
+            port: 23083
+          initialDelaySeconds: 10
+          timeoutSeconds: 10
+        livenessProbe: *default_probe
+        env:
+        - name: GAME_STYLE
+          value: "3"
+        - name: MAX_PLAYERS
+          value: "12"
+        - name: SERVER_NAME
+          value: "NPF FFA - Soldat CTF 1"
+        - name: BALANCE_TEAMS
+          value: "1"
+        resources:
+          requests:
+            memory: "350Mi"
+            cpu: "0.8"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: soldat-ctf-1
+  labels:
+    app: soldat-ctf-1
+spec:
+  type: ClusterIP
+  clusterIP: 10.101.130.1
+  selector:
+    app: soldat-ctf-1
+  ports:
+  - name: gameserver
+    protocol: UDP
+    port: 23073
+    targetPort: 23073
+  - name: admin
+    protocol: TCP
+    port: 23073
+  - name: files
+    protocol: TCP
+    port: 23083
+    targetPort: 23083
