@@ -45,8 +45,6 @@ metadata:
   labels:
     app: soldat-deathmatch-1
 spec:
-  type: ClusterIP
-  clusterIP: 10.101.130.11
   selector:
     app: soldat-deathmatch-1
   ports:

@@ -45,8 +45,6 @@ metadata:
   labels:
     app: soldat-ctf-1
 spec:
-  type: ClusterIP
-  clusterIP: 10.101.130.1
   selector:
     app: soldat-ctf-1
   ports:
