@@ -1,4 +1,4 @@
-FROM debian:10-slim AS base
+FROM debian:10 AS base
 RUN apt-get -y update && \
     apt-get -y --force-yes install ca-certificates wget unzip && \
     wget https://static.soldat.pl/downloads/soldatserver2.8.2_1.7.1.1.zip && \
@@ -12,7 +12,7 @@ RUN apt-get -y update && \
 ADD ./config/ /soldat/
 RUN chmod +x soldat/start.sh
 
-FROM debian:10-slim
+FROM debian:10
 MAINTAINER Kristian Dahl Kærgaard <hcand.dk@gmail.com>
 COPY --from=base /soldat /soldat
 RUN useradd -ms /bin/bash soldat && \
