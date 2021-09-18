@@ -4,7 +4,7 @@ RUN apt-get -y update && \
     mkdir soldat && \
     wget https://static.soldat.pl/downloads/soldatserver2.8.2_1.7.1.1.zip && \
     unzip soldatserver2.8.2_1.7.1.1.zip && \
-    mv soldatserver2.8.2_1.7.1.1 soldat && \
+    mv solda*/ soldat && \
     chmod +x soldat/soldatserver && \
     chmod -R 0777 soldat/logs && \
     chmod -R u+w soldat/logs/ && \
