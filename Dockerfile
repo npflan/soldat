@@ -1,6 +1,6 @@
-FROM 32bit/debian:jessie AS base
+FROM debian:10-slim AS base
 RUN apt-get -y update && \
-    apt-get -y install ca-certificates wget unzip && \
+    apt-get -y --force-yes install ca-certificates wget unzip && \
     mkdir soldat && \
     wget https://static.soldat.pl/downloads/soldatserver2.8.2_1.7.1.1.zip && \
     unzip soldatserver2.8.2_1.7.1.1.zip -d soldat && \
@@ -12,7 +12,7 @@ RUN apt-get -y update && \
 ADD ./config/ /soldat/
 RUN chmod +x soldat/start.sh
 
-FROM 32bit/debian:jessie
+FROM debian:10-slim
 MAINTAINER Kristian Dahl Kærgaard <hcand.dk@gmail.com>
 COPY --from=base /soldat /soldat
 RUN useradd -ms /bin/bash soldat && \
