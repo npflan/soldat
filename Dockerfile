@@ -1,7 +1,6 @@
 FROM debian:10-slim AS base
 RUN apt-get -y update && \
     apt-get -y --force-yes install ca-certificates wget unzip && \
-    mkdir soldat && \
     wget https://static.soldat.pl/downloads/soldatserver2.8.2_1.7.1.1.zip && \
     unzip soldatserver2.8.2_1.7.1.1.zip && \
     mv solda*/ soldat && \
