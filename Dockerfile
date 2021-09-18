@@ -3,7 +3,8 @@ RUN apt-get -y update && \
     apt-get -y --force-yes install ca-certificates wget unzip && \
     mkdir soldat && \
     wget https://static.soldat.pl/downloads/soldatserver2.8.2_1.7.1.1.zip && \
-    unzip soldatserver2.8.2_1.7.1.1.zip -d soldat && \
+    unzip soldatserver2.8.2_1.7.1.1.zip && \
+    mv soldatserver2.8.2_1.7.1.1 soldat && \
     chmod +x soldat/soldatserver && \
     chmod -R 0777 soldat/logs && \
     chmod -R u+w soldat/logs/ && \
